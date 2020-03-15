@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" th:href="@{/app.css}" />
+
+    <title>Task List</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-3 text-center">Task List</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 offset-md-4 no-gutters px-0 shadow-sm">
+                <div class="row">
+                    <div class="col">
+                        <form action="#" th:action="@{/}" method="post">
+                            <div class="input-group">
+                                <input name="task" id="task" type="text" placeholder="Enter a task..." class="form-control" th:style="${#lists?.size(taskList) > 0} ? 'border-bottom-left-radius: 0' : ''"/>
+                                <div class="input-group-append">
+                                    <input type="submit" class="btn btn-outline-secondary" value="Add" th:style="${#lists?.size(taskList) > 0} ? 'border-bottom-right-radius: 0' : ''"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group">
+                            <li th:each="task, iter : ${taskList}" class="list-group-item">
+                                <span class="name align-middle w-75" th:text="${task}">Item 1</span>
+                                <a th:href="'?del=' + ${iter.index}" class="float-right"><i class="material-icons">delete</i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
